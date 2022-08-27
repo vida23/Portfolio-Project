@@ -1,0 +1,61 @@
+<div class="container ">
+
+    <h1 class="title has-text-centered">
+        <a href="/blogposts">
+            More blogposts
+        </a>
+    </h1>
+
+    {{#if authorizationError.length}}
+    <p>You are not authorized to perform this action. Please log in to gain access.</p>
+
+    {{else}}
+
+    {{#if databaseError}}
+    <p>Internal server error.</p>
+    {{else}}
+
+    <div class="columns is-centered">
+        <div class="column is-8">
+
+            <div class="card">
+                <div class="card-content">
+
+                    <p class="title has-text-black">
+                        Title: {{blogpost.blogpostTitle}}
+                    </p>
+
+                    <p class="subtitle has-text-black">
+                        Publication Date: {{blogpost.datePublished}}
+                    </p>
+
+                    <div class="content">
+                        Blogpost content: {{blogpost.blogpostContent}}
+                    </div>
+                </div>
+                {{/if}}
+
+
+
+                {{#if isLoggedIn}}
+
+                <footer class="card-footer">
+
+                    <a href="/blogposts/updateBlogpost/{{blogpost.blogpostID}}" class="card-footer-item">Update</a>
+
+                    <form action="/blogposts/deleteBlogpost/{{blogpost.blogpostID}}" method="POST">
+
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <input class="button is-danger" type="submit" value="Delete">
+
+                    </form>
+
+                </footer>
+
+                {{/if}}
+                {{/if}}
+
+            </div>
+        </div>
+    </div>
+</div>

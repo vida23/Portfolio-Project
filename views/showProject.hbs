@@ -1,0 +1,51 @@
+<div class="container ">
+
+    <h1 class="title has-text-centered">
+        <a href="/projects">
+            Project: {{project.projectTitle}}
+        </a>
+    </h1>
+
+    {{#if authorizationError.length}}
+    <p>Error occurred:</p>
+    <ul>
+        {{#each authorizationError}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+    {{else}}
+
+    {{#if databaseError}}
+    <p>Internal server error. Data cannot be fetched right now.</p>
+    {{else}}
+
+    <div class="columns is-centered">
+        <div class="column is-8">
+
+            <div class="card">
+                <div class="card-content">
+
+                    <p class="subtitle has-text-black">
+                        Publication Date: {{project.dateFinished}}
+                    </p>
+
+                    <div class="content">
+                        Project content: {{project.projectContent}}
+                    </div>
+                </div>
+
+                <footer class="card-footer">
+
+                    <p class="card-footer-item">
+
+                        <a href="/projects" class="card-footer-item">More projects</a>
+                    </p>
+
+                </footer>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{/if}}
+
+</div>

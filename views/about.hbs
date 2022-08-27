@@ -1,0 +1,98 @@
+<div class="colums">
+    <div class="column is-three-fifths is-offset-one-fifth">
+        <div class="column">
+
+            <h1 class="title has-text-justified">About</h1>
+
+
+            {{#if databaseError}}
+            <p>Internal server error. Data cannot be fetched right now.</p>
+
+            {{else}}
+
+            {{#if authorizationError.length}}
+            <p>You are not authorized to post this. Please log in to gain access.</p>
+
+            {{else}}
+
+            {{#if aboutInfo.length }}
+            {{#each aboutInfo}}
+            {{#if @last}}
+
+            <p id="aboutInfoBox">
+                {{aboutInfoContent}}
+            </p>
+
+            <button class="button is-danger">
+                <a href="/contactPage" class="card-footer-item">Get in touch</a>
+            </button>
+
+            {{#if ../isLoggedIn}}
+
+            <div id="aboutInfoBox">
+
+                <button class="button is-danger">
+                    <a href="/about/updateAboutInfo/{{aboutInfoID}}" class="card-footer-item">Edit</a>
+                </button>
+                <button class="button is-danger is-outlined">
+                    <a href="/about/add" class="card-footer-item">Add about information</a>
+                </button>
+
+
+            </div>
+
+            <h1 class="title has-text-justified">Previously posted information</h1>
+
+            {{#if ../aboutInfo.length}}
+            {{#each ../aboutInfo}}
+            {{#unless @last}} 
+            {{!-- Preventing user to delete the current about information --}}
+
+            <article class="message">
+
+                <div class="message-header">
+                    <p>Previous information</p>
+
+                    <form action="/about/deleteAboutInfo/{{aboutInfoID}}" method="POST">
+                    
+                        <input type="hidden" name="_csrf" value="{{../../csrfToken}}">
+
+                        <button type="submit" class="button is-danger">
+                            Delete this post
+                        </button>
+
+                    </form>
+
+                </div>
+
+                <div class="message-body">
+                    <strong>Contact Name:</strong>
+                    <p> {{aboutInfoContent}}</p>
+                </div>
+
+            </article>
+            {{/unless}}
+
+            {{/each}}
+
+            {{/if}}
+
+
+        </div>
+
+
+        {{/if}}
+
+        {{/if}}
+        {{/each}}
+
+
+        {{else}}
+        <p>No about information is available</p>
+        {{/if}}
+        {{/if}}
+        {{/if}}
+
+    </div>
+</div>
+</div>

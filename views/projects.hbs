@@ -1,0 +1,67 @@
+<div class="container">
+
+  {{#if isLoggedIn}}
+
+  <a href="projects/add" class="button is-danger is-outlined">Create new project</a>
+
+  {{/if}}
+
+  <div class="section">
+    <h1 class="title has-text-justified">Projects</h1>
+
+    {{#if databaseError}}
+    <p>Internal server error. Data cannot be fetched right now.</p>
+    {{else}}
+
+    {{#if projects.length}}
+    {{#each projects}}
+
+    <div class="columns">
+      <div class="column">
+        <div class="columns is-multilined is-4">
+
+          <div class="tile is-parent">
+
+            <article class="tile is-child box">
+
+              <p class="title has-text-black-ter">Project Title: {{projectTitle}}</p>
+              <p class="subtitle has-text-grey">Publish Date: {{dateFinished}}</p>
+              <p class="subtitle has-text-black">Project Description: </p>
+              <p>{{projectContent}}</p>
+
+
+              <footer class="card-footer">
+
+                {{#if ../isLoggedIn}}
+
+                <form action="/projects/deleteProject/{{projectID}}" method="POST">
+
+                  <a href="/projects/updateProject/{{projectID}}" class="button is-danger is-outlined">Edit</a>
+
+                  <input type="hidden" name="_csrf" value="{{../csrfToken}}">
+
+                  <button type="submit" class="button is-danger">
+                    Delete
+                  </button>
+
+                </form>
+
+                {{/if}}
+
+                <a href="projects/{{projectID}}" class="button is-danger is-outlined">Read More</a>
+
+              </footer>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+
+    {{else}}
+    <p> There are no projects to show here </p>
+    {{/if}}
+    {{/if}}
+  </div>

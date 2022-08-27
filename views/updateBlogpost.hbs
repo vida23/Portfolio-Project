@@ -1,0 +1,57 @@
+<section class="section">
+  <h1 class="title has-text-justified">Update blogpost: {{blogpost.blogpostTitle}}</h1>
+
+  {{#if authorizationError.length}}
+  <p>Error occurred:</p>
+  <ul>
+    {{#each authorizationError}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  {{else}}
+
+  {{#if validationErrors.length}}
+  <p>Error occurred:</p>
+  <ul>
+    {{#each validationErrors}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+
+{{#if databaseError}}
+<p>Internal servar error.</p>
+{{else}}
+
+  <form method="POST">
+
+    <div class="field is-grouped">
+      <div class="control">
+
+        Publication date:
+        <input class="input is-rounded is-danger" type="date" id="input-datePublished" placeholder="Date of publication"
+          name="datePublished" value="{{blogpost.datePublished}}">
+
+        Blogpost title:
+        <input class="input is-rounded is-danger" type="text" id="input-blogpostTitle" placeholder="Title of blogpost"
+          name="blogpostTitle" value="{{blogpost.blogpostTitle}}">
+
+        Content:
+        <input class="textarea is-danger" type="text" id="input-blogpostContent" placeholder="..."
+          name="blogpostContent" value="{{blogpost.blogpostContent}}">
+
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <button type="submit" class="button is-danger">
+          Update Blogpost
+        </button>
+
+      </div>
+    </div>
+  </form>
+  {{/if}}
+  {{/if}}
+  {{/if}}
+
+</section>

@@ -1,0 +1,48 @@
+<section class="section">
+  <h1 class="title has-text-justified">Update About Information:</h1>
+
+  {{#if databaseError}}
+  <p>Internal server error. Data cannot be fetched right now.</p>
+  {{/if}}
+
+  {{#if validationErrors.length}}
+  <p>Error occurred:</p>
+  <ul>
+    {{#each validationErrors}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  {{else}}
+
+  {{#if authorizationError.length}}
+  <p>Error occurred:</p>
+  <ul>
+    {{#each authorizationError}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  {{else}}
+
+  <form method="POST">
+
+    <div class="field is-grouped">
+      <div class="control">
+
+        Content:
+        <input class="textarea is-danger" type="text" id="input-aboutInfoContent" placeholder="..."
+          name="aboutInfoContent" value="{{aboutInfo.aboutInfoContent}}">
+
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <button type="submit" class="button is-danger">
+          Update
+        </button>
+
+      </div>
+    </div>
+  </form>
+  {{/if}}
+  {{/if}}
+</section>

@@ -1,0 +1,45 @@
+<div class="container">
+  <h1 class="title has-text-centered">Blogposts</h1>
+  {{#if isLoggedIn}}
+
+  <a href="blogposts/add" class="button is-danger is-outlined">Create new blogpost</a>
+
+  {{/if}}
+</div>
+
+{{#if databaseError}}
+<p>Internal server error.</p>
+{{else}}
+
+{{#if blogposts.length}}
+<div id="blogCard">
+
+  {{#each blogposts}}
+  <div class="colums">
+    <div class="column is-11 is-offset-1">
+      <div class="column">
+        <div class="card has-text-centered">
+          <header class="card-header-title is-centered">
+            <p>
+              <a href="/blogposts/{{blogpostID}}">{{blogpostTitle}}</a>
+            </p>
+          </header>
+
+          <div class="card-content">
+            <p class="card-content">Blogpost: {{blogpostContent}}</p>
+            <p class="card-content">Publication date: {{datePublished}}</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {{/each}}
+
+  {{else}}
+  <p> No blogposts yet </p>
+  {{/if}}
+  {{/if}}
+</div>

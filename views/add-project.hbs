@@ -1,0 +1,53 @@
+<section class="section">
+  <h1 class="title has-text-justified">Post new project</h1>
+
+  {{#if databaseError}}
+  <p>Internal server error.</p>
+  {{/if}}
+
+
+  {{#if validationErrors.length}}
+  <p>Error occurred:</p>
+  <ul>
+    {{#each validationErrors}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+  {{/if}}
+
+
+  {{#if authorizationError.length}}
+  <ul>
+    {{#each authorizationError}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  {{else}}
+
+  <form action="" method="POST">
+
+    <div class="field is-grouped">
+      <div class="control">
+
+        Project finish date:
+        <input class="input is-rounded is-danger" type="date" id="input-dateFinished" placeholder="Date finished"
+          name="dateFinished" value="{{dateFinished}}">
+        Project title:
+        <input class="input is-rounded is-danger" type="text" id="input-title" placeholder="Title of project"
+          name="projectTitle" value="{{projectTitle}}">
+        Project description:
+        <textarea class="textarea is-danger" type="text" id="input-content" placeholder="Describe the project..."
+          name="projectContent" value="{{projectContent}}"></textarea>
+
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <button class="button is-danger">
+          Post project
+        </button>
+
+      </div>
+    </div>
+  </form>
+  {{/if}}
+</section>

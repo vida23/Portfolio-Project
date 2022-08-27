@@ -1,0 +1,66 @@
+<h1 class="title has-text-centered"> Recieved Contact Requests</h1>
+
+{{#if databaseError}}
+<p>Internal server error. Data cannot be fetched right now.</p>
+{{/if}}
+
+
+{{#if authorizationError.length}}
+<p>Error occurred:</p>
+<ul>
+    {{#each authorizationError}}
+    <li>{{this}}</li>
+    {{/each}}
+</ul>
+
+
+{{else}}
+
+{{#if contactRequests.length}}
+
+{{#each contactRequests}}
+
+<div class="colums">
+    <div class="column is-two-thirds">
+        <div class="column is-three-fifths is-offset-one-fifth">
+
+            <article class="message">
+
+                <div class="message-header">
+                    <p>Message Subject: {{requestSubject}}</p>
+
+                    <form action="/contactPage/deleteRequest/{{contactReqID}}" method="POST">
+
+                        <input type="hidden" name="_csrf" value="{{../csrfToken}}">
+
+                        <button type="submit" class="button is-danger">
+                            Request Answered
+
+                        </button>
+                    </form>
+
+                </div>
+
+                <div class="message-body">
+                    <strong>Contact Name:</strong>
+                    <p> {{contactName}}</p>
+                    <strong> Contact Email: </strong>
+                    <p>{{contactEmail}}</p>
+                    <strong>Contact Tel: </strong>
+                    <p>{{contactTel}}</p>
+                    <strong>Request Content: </strong>
+                    <p>{{requestContent}}</p>
+                </div>
+
+            </article>
+
+        </div>
+    </div>
+</div>
+
+{{/each}}
+
+{{else}}
+No Contact Requests Yet
+{{/if}}
+{{/if}}

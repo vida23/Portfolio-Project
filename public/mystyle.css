@@ -1,0 +1,44 @@
+#icons a {
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 8px;
+  color: #ff3860;
+}
+
+#aboutInfoBox {
+margin-bottom: 10%;}
+
+footer {
+  margin-bottom: 15px;
+}
+
+body {
+  font-family: "Josefin Sans";
+  font-variant-position: sub;
+}
+
+.columns {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.button {
+  margin-top: 10px;
+}
+
+#logo {
+  margin-right: 400px;
+  margin-top: 25px;
+  font-size: 50px;
+  color: #ff3860;
+}
+
+.select {
+  width: auto;
+}
+
+#blogCard {
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+}

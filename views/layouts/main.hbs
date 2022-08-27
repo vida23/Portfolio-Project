@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Vida</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+  <script src="https://kit.fontawesome.com/42d7b7b631.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Josefin+Sans">
+  <link rel="stylesheet" href="/mystyle.css">
+</head>
+
+<!-- **********************Navbar************************************* -->
+<section class="hero is-dark is-fullheight">
+  <div class="hero-head">
+
+    <section class="hero is-small is-danger">
+
+      <nav class="navbar">
+
+        <div class="navbar-brand">
+          <div class="navbar-item">
+            <h1>
+              <a href="/">
+                Vida Rashidi
+              </a>
+            </h1>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+
+              <a class="button is-dark" href="/">Home</a>
+              <a class="button is-dark" href="/blogposts">Blogposts</a>
+              <a class="button is-dark" href="/projects">Projects</a>
+              <a class="button is-dark" href="/about">About</a>
+
+              {{#if isLoggedIn}}
+              <a class="button is-dark" href="/contactPage/contactRequests">Contact Requests</a>
+              {{else}}
+              <a class="button is-dark" href="/contactPage">Contact Us</a>
+              {{/if}}
+
+              {{#if isLoggedIn}}
+              <form action="/logout" method="POST">
+                <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                <button type="submit" class="button is-dark">
+                  Logout
+                </button>
+              </form>
+
+              {{else}}
+              <a class="button is-dark" href="/login">Login</a>
+              {{/if}}
+
+            </div>
+          </div>
+        </div>
+
+      </nav>
+
+    </section>
+
+    {{#if isLoggedIn}}
+    <article class="message is-small has-text-centered">
+      <div class="message-body">
+        <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+        You are logged in as admin.
+      </div>
+    </article>
+    {{/if}}
+
+  </div>
+  <!-- **********************Body************************************* -->
+  <div class="hero-body">
+    <div class="container">
+      <main>
+        {{{body}}}
+      </main>
+    </div>
+  </div>
+  <!-- **********************Footer************************************* -->
+
+  <div class="hero-foot is-dark has-text-centered">
+    <div class="container">
+      <div id="icons">
+        <ul>
+          <a href="https://www.facebook.com/vida.rashidi"><i class="fab fa-facebook-f fa-3x"></i></a>
+          <a href="https://twitter.com/vidarashidi"><i class="fab fa-twitter fa-3x"></i></a>
+          <a href="https://www.instagram.com/vidarashidi" /><i class="fab fa-instagram fa-3x"></i></a>
+          <a href="https://www.linkedin.com/in/vida-rashidi-9045b2198"><i
+              class="fa-brands fa-linkedin-in fa-3x"></i></a>
+          <ul>
+      </div>
+    </div>
+  </div>
+</section>

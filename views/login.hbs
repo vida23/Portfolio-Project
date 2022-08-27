@@ -1,0 +1,47 @@
+<div class="colums">
+  <div class="column is-mobile">
+    <div class="column is-two-fifths is-offset-one-fifth">
+      <h1 class="title has-text-justified">Login</h1>
+
+      {{#if validationErrors.length}}
+      <p>Error occurred:</p>
+      <ul>
+        {{#each validationErrors}}
+        <li>{{this}}</li>
+        {{/each}}
+      </ul>
+      {{/if}}
+
+      {{#if isLoggedIn}}
+      <p>You are already logged in</p>
+      {{else}}
+
+      <form action="" method="POST">
+
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
+            <input class="input is-rounded is-danger" type="text" id="input-username" name="username"
+              placeholder="Username" value="{{username}}">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input class="input is-rounded is-danger" id="input-password" name="password" type="password"
+              placeholder="Password" value="{{password}}">
+          </div>
+        </div>
+
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <button class="button is-danger">
+          Login
+        </button>
+
+      </form>
+      {{/if}}
+    </div>
+  </div>
+</div>

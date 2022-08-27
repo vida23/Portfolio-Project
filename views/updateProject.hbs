@@ -1,0 +1,55 @@
+<section class="section">
+  <h1 class="title has-text-justified">Update project: {{project.projectTitle}}</h1>
+
+  {{#if authorizationError.length}}
+  <p>Error occurred:</p>
+  <ul>
+    {{#each authorizationError}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  {{else}}
+
+  {{#if validationErrors.length}}
+  <p>Error occurred:</p>
+  <ul>
+    {{#each validationErrors}}
+    <li>{{this}}</li>
+    {{/each}}
+  </ul>
+
+  {{else}}
+
+  {{#if databaseError}}
+  <p>Internal servar error. Data cannot be fetched right now.</p>
+  {{else}}
+
+  <form method="POST">
+
+    <div class="field is-grouped">
+      <div class="control">
+
+        Publication date:
+        <input class="input is-rounded is-danger" type="date" id="input-dateFinished" placeholder="Date of publication"
+          name="dateFinished" value="{{project.dateFinished}}">
+        Project title:
+        <input class="input is-rounded is-danger" type="text" id="input-projectTitle" placeholder="Title of project"
+          name="projectTitle" value="{{project.projectTitle}}">
+        Content:
+        <input class="textarea is-danger" type="text" id="input-projectContent" placeholder="..." name="projectContent"
+          value="{{project.projectContent}}">
+
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+
+        <button type="submit" class="button is-danger">
+          Update Project
+        </button>
+
+      </div>
+    </div>
+  </form>
+  {{/if}}
+  {{/if}}
+  {{/if}}
+</section>
