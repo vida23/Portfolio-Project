@@ -14,7 +14,7 @@ const csrf = require("csurf")
 
 ///////////////////////////////////////////////////////////////////////////////
 const ADMIM_USERNAME = "Vida"
-const ADMIN_PASSWORD = "$2b$10$8qZX5EG37MP40q5trKq0G.r00Spf1ro3s.OWwey0/cEiG0WKu9ppO" 
+const ADMIN_PASSWORD = "$2b$10$8qZX5EG37MP40q5trKq0G.r00Spf1ro3s.OWwey0/cEiG0WKu9ppO"
 
 //How the password was hashed
 // const saltRounds = 10
@@ -56,7 +56,6 @@ app.use(expressSession({
     db: "sessions.db"//where the sessions should be stored
   })
 }))
-
 
 
 app.use(function (request, response, next) {
