@@ -57,6 +57,8 @@ app.use(expressSession({
   })
 }))
 
+
+
 app.use(function (request, response, next) {
   response.locals.isLoggedIn = request.session.isLoggedIn
   next()
