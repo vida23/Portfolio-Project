@@ -91,6 +91,12 @@ router.get("/:projectID", function (request, response) {
         databaseError: true
       }
       response.render("showProject.hbs", model)
+    } else if (project == undefined) {
+      const model = {
+        projectNotFound: true
+      }
+      response.render("showProject.hbs", model)
+      return
     } else {
       const model = {
         databaseError: false,

@@ -2,9 +2,14 @@
 
     <h1 class="title has-text-centered">
         <a href="/projects">
-            Project: {{project.projectTitle}}
+            View Project {{project.projectTitle}}
         </a>
     </h1>
+
+    {{#if projectNotFound}}
+    <p>Project cannot be found.</p>
+
+    {{else}}
 
     {{#if authorizationError.length}}
     <p>Error occurred:</p>
@@ -47,5 +52,5 @@
     </div>
     {{/if}}
     {{/if}}
-
+    {{/if}}
 </div>
